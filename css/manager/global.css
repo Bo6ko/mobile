@@ -1,0 +1,460 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,300italic,400,700);
+/*	----------------------------------------------------------------
+*	HTML defaults
+*/
+html{background: #fff;}
+body{font-size:14px;line-height:13px;font-family: Roboto;margin: 0 auto!important;}
+input[type=checkbox]{border:0;}
+img{vertical-align:text-bottom;}
+sup{font-size:.6em;vertical-align:top;}
+
+a:link,a:visited{color:#0072CF;}
+a:hover,a:active{color:#000;}
+
+/*	----------------------------------------------------------------
+*	Useful classes
+*/
+.clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;float:none;}
+.clear:after{clear:both;content:'.';display:block;height:0;visibility:hidden;}
+.upper {text-transform: uppercase;}
+.bold {font-weight: bold;}
+.tcenter{text-align: center;}
+.tleft{text-align: left;}
+.tright{text-align: right;}
+
+
+/*	================================================================
+*	block:	HEADER
+*/
+#header{
+	padding:0px;
+	font-family: Roboto;
+	font-size: 11px;
+	background-color: #1d242c;
+	color: #fff;
+	margin-top: 60px;
+	margin-bottom: 35px;
+}
+.header-img {
+	width: 100%;
+}
+
+/*	================================================================
+*	block:	NAVIGATION
+*/
+div.navigation {
+	background-color: #f4f4f4;
+	line-height: 40px;
+}
+div.navigation ul.menu {
+	text-align: center;
+}
+
+
+
+
+ul.menu li a img {
+	bottom: 4px;
+    position: relative;
+}
+div.navigation ul.menu li{
+	display: inline-block;
+	padding: 0px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color:#1d242c;
+	font-size:14px;
+	font-weight:bold;
+	position: relative;
+}
+ul.menu li:after {
+	position: absolute;
+    right: -5px;
+    top: 5px;
+	color: #8a96b0;
+}
+ul.menu li a {
+	color: #000000;
+}
+.menu li:last-child:after {
+    content: "";
+}
+ul.menu li:hover {
+	background-color: #1d242c;
+	color: #ffffff!important;
+}
+ul.menu li:hover a {
+	color: #ffffff!important;
+}
+
+/*	================================================================
+*	block:	CONTENT
+*/
+
+#content {
+	margin-top: 30px;
+}
+.section{
+	margin: 20px 0px 20px 0px;
+	max-width: 1140px;
+	width: 100%;
+	margin: 0 auto;
+	}
+.menu {
+	width: 980px;
+	margin: 0 auto;
+}
+.menu a:first-child {
+	padding-left: 0px;
+}
+h1 {
+	font-size: 30px;
+	margin: 15px 0px;
+}
+h2{
+	font-size: 20px;
+	display: inline-block;
+	margin-bottom: 17px;
+	font-weight: normal;
+}
+h3{
+	font-size: 18px;
+	margin: 7px 0px 6px;
+	font-weight: 600;
+}
+hr {
+	border-color: #d5d5d5;
+    opacity: 0.4;
+}
+.left,
+.left-sidebar {
+	float: left;
+}
+.left-sidebar {
+	width: calc( 100% - 320px);
+}
+.right,
+.right-sidebar {
+	float: right;
+}
+.right-sidebar {
+	width: 300px;
+}
+.clear {
+	clear: both;
+}
+table.grid {
+	width:100%;
+}
+
+table.grid, th, td {
+	border-collapse: collapse;
+}
+
+table.grid th, table.grid td {
+	padding: 5px;
+	text-align: left;
+}
+
+table.grid tr:nth-child(even) {
+	background-color: #eee;
+}
+
+table.grid tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table.grid th {
+	background-color: black;
+	color: white;
+}
+
+table.grid .text-center {
+	text-align: center;
+}
+table.grid thead th {
+	border-color: black!important;
+}
+.section-result {
+	margin: 50px 0px 20px;
+}
+.cars-result {
+	padding-top: 6px;
+	border-top: 4px solid #d01818;
+	margin-bottom: 20px;
+}
+.cars-result img {
+	width: 150px;
+	height: 120px;
+	border: 4px solid #f2f2f2;
+	margin-right: 10px;
+}
+.cars-result .car-name {
+	width: 60%;
+}
+.cars-result .car-price {
+	background-color: #d01818;
+	padding: 10px 17px;
+	font-weight: bold;
+	color: #ffffff;
+	margin-left: 10px;
+}
+option {
+	height: 30px;
+    padding: 30px 0px;
+    line-height: 20px;
+    margin: 10px 0px;
+}
+.section-find-car option[value=select] {
+    display: none;
+}
+.create-btn a {
+    background: #e7e7e7;
+    border-color: #ffffff;
+    color: #454545;
+}
+.btn {
+    display: block;
+    float: left;
+    margin: 25px 0px 20px!important;
+	padding: 8px 20px 8px 20px;
+    position: relative;
+}
+a.btn-create {
+	padding: 8px 20px 8px 40px;
+	background-image: url(/../css/manager/images/create.png);
+	background-repeat: no-repeat;
+	background-position: 14px 10px;
+}
+a.edit {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background-image: url(/../css/manager/images/update.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+.update-btn {
+	background: #e7e7e7;
+	border-color: #ffffff;
+	color: #454545;
+}
+
+.search form ul li {
+	float: left;
+	max-width: 278px;
+	margin-right: 20px;
+}
+.search form ul li input {
+	padding: 6px 10px;
+}
+.search form ul li input[type="submit"] {
+	margin-top: 25px;
+	padding: 6px 20px;
+}
+input.btn {
+	margin-top: 20px;
+}
+form input[type="text"] {
+	padding: 3px 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #ced4da;
+}
+.error {
+	color: red;
+	font-size: 20px;
+}
+.success {
+	color: dodgerblue;
+	font-size: 20px;
+}
+.form-control {
+	width: 239px!important;
+}
+
+/*	================================================================
+*	block:	FOOTER
+*/
+.footer{
+	padding: 35px 0px;
+	margin-top: 20px;
+	font-family: Roboto;
+	font-size: 11px;
+	background-color: #160D0E;
+	color: #86867c;
+	line-height: 25px;
+}
+.logo-footer,
+.top-brand,
+.categories-footer {
+	width: 22.3%;
+    margin-right: 33px;
+}
+.address-info-footer {
+	width: 22.3%;
+}
+.social-icon-footer img {
+	margin-right: 22px;
+}
+.footer h3 {
+	color: #ffffff;
+	font-weight: bold;
+}
+.footer ul li {
+	width: 49%;
+	display: inline-block;
+	float: left;
+	padding-left: 20px;
+	background-image: url(/../css/public/icons/li-arrow-icon.png);
+	background-repeat: no-repeat;
+    background-position: 0px 8px;
+	line-height: 30px;
+}
+.categories-footer ul li {
+	width: 100%;
+	float: none;
+}
+.address-info-footer {
+	color: #ffffff;
+}
+.email-foot {
+	padding-left: 30px;
+	background-image: url(/../css/public/icons/email-icon.png);
+	background-repeat: no-repeat;
+    background-position: 0px 8px;
+}
+.address-foot {
+	padding-left: 30px;
+	background-image: url(/../css/public/icons/address-icon-wh.png);
+	background-repeat: no-repeat;
+    background-position: 0px 8px;
+}
+.time-foot {
+	padding-left: 30px;
+	background-image: url(/../css/public/icons/time-icon.png);
+	background-repeat: no-repeat;
+    background-position: 0px 8px;
+}
+
+
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+
+/* for 600px or less */
+@media screen and (max-width:600px) {
+
+	.header-img,
+	.navigation,
+	.footer,
+	#header,
+	body,
+	.menu,
+	.section,
+	.section-slider,
+	.main,
+	.slider-for img,
+	.car-slider-item,
+	.related-cars,
+	.related-car-item,
+	.related-car-item img,
+	.related-car-options,
+	.paginator-arrow {
+		width: calc(600px - 30px) !important;
+		margin: 0 auto
+	}
+
+	.section-slider h2 {
+		margin-top: 0px;
+	}
+
+	.options .left {
+		float: none;
+	}
+
+	.options .right {
+		float: left;
+	}
+
+	.accordion {
+		background-position: 0px 16px;
+	}
+
+	.related-car-item {
+		margin: 0px;
+	}
+
+	.section-slider,
+	.main,
+	.slider-for img {
+		height: auto;
+	}
+
+	.slick-list:first-child,
+	.slick-track:first-child {
+		height: 315px;
+	}
+
+	.thumbnails .slick-slide img,
+	.thumbnails .slick-track:first-child,
+	.thumbnails .slick-list {
+		height: 85px;
+	}
+
+	.related-car-options span:nth-child(1), .related-car-options span:nth-child(2) {
+		padding: 15px 20px !important;
+	}
+
+	.carrosserie button {
+		width: 97px;
+	}
+
+	.section-find-car h1 {
+		font-size: 31px;
+	}
+
+	.tablinks {
+		width: calc(100% - 30px);
+		margin-left: 15px;
+		text-align: left;
+	}
+
+	.right-sidebar {
+		width: 100%;
+		margin-top: 30px;
+	}
+
+	.related-car-item img {
+		height: 100% !important;
+	}
+
+	.related-car-price {
+		top: 265px !important;
+		right: 4px !important;
+	}
+	.accordion {
+		background-position: 0px 37px!important;
+	}
+	.related-car-item:nth-child(2n) {
+		display: none;
+	}
+	.paginator-arrow {
+		margin-bottom: 70px;
+	}
+	.logo-footer, .top-brand, .categories-footer, .address-info-footer {
+		width: 100%;
+		padding: 0px 15px;
+	}
+	.footer ul li {
+		width: 24%;
+	}
+
+
+}
+
+
+
+
