@@ -1,0 +1,12 @@
+#	Load modrewrite engine
+RewriteEngine on
+RewriteBase /
+
+#	Load modrewrite conditions
+RewriteCond $1 !^(index\.php|phpinfo\.php|favicon\.ico|robots\.txt|files|images|js|css|plugins)
+
+#	Load modrewrite rule
+RewriteRule ^(.*)$ index.php?/$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?/$1 [L]

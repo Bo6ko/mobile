@@ -1,0 +1,50 @@
+<div class="section">
+
+    <div class="create-btn">
+        <a href="{$smarty.const.WEB_PATH}manager/vehicule_modeles" class="btn">View all modeles</a>
+    </div>
+    <div class="clear"></div>
+
+    {if isset($response) && !empty($response) }
+    <div class="message {if isset($response.status)}  {if !$response.status}error{else}success{/if} {/if}">
+        {$response.message}
+    </div>
+    {/if}
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>Create modeles</legend>
+            <ul>
+                <li>
+                    <div class="d1"><label for="marque_id">Marque: </label></div>
+                    <div class="d2">
+                        <select id="marque_id" class="form-control" name="marque_id">
+                            <option value=""> - choise - </option>
+
+                            {if isset($marques) && is_array($marques) && count($marques) > 0}
+                                {foreach from=$marques item=marque}
+                                    <option value="{$marque.marque_id}" {if isset($post) && $post.marque_id == $marque.marque_id}selected="selected"{/if} >{$marque.marque_name}</option>
+                                {/foreach}
+                            {/if}
+                        </select>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="d1"><label for="modele_name">Name: </label></div>
+                    <div class="d2"><input type="text" name="modele_name" id="modele_name" class="form-control" value="{if isset($post.modele_name)}{$post.modele_name|escape:'html'}{/if}" /></div>
+                </li>
+
+                <li>
+                    <div class="d1"><label for="modele_slogan">Slogan: </label></div>
+                    <div class="d2"><input type="text" name="modele_slogan" class="form-control" id="modele_slogan" value="{if isset($post.modele_slogan)}{$post.modele_slogan|escape:'html'}{/if}" /></div>
+                </li>
+
+                <li>
+                    <input class="btn" type="submit" value="Create">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+</div>

@@ -1,0 +1,309 @@
+<div class="section">
+
+    <div class="create-btn">
+        <a href="{$smarty.const.WEB_PATH}manager/vehicules" class="btn">View all vehicules</a>
+        <div class="clear"></div>
+    </div>
+
+    <div class="message" id="response"></div>
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>Update modele</legend>
+            <ul>
+                <li>
+                    <label for="marque_id">Choose marque: </label>
+                    <select id="marque_id" class="form-control" name="marque_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($marques) && is_array($marques) && count($marques) > 0}
+                            {foreach from=$marques item=marque}
+                                <option value="{$marque.marque_id}" {if isset($post) && $post.marque_id == $marque.marque_id}{else}{if isset($data) && $data.marque_id == $marque.marque_id}selected="selected"{/if}{/if} >{$marque.marque_name}</option>
+                            {/foreach}
+                        {/if}
+                    </select><br/>
+                </li>
+
+                <li>
+                    <label for="modele_id">Choose modele: </label>
+                    <select id="modele_id" class="form-control" name="modele_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($modeles) && is_array($modeles) && count($modeles) > 0}
+                            {foreach from=$modeles item=modele}
+                                <option value="{$modele.modele_id}" {if isset($post) && $post.modele_id == $modele.modele}{else}{if isset($data) && $data.modele_id == $modele.modele_id}selected="selected"{/if}{/if} >{$modele.modele_name}</option>
+                            {/foreach}
+                        {/if}
+                    </select><br/>
+                </li>
+
+                <li>
+                    <label for="engine_id">Choose engine: </label>
+                    <select id="engine_id" class="form-control" name="engine_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($engines) && is_array($engines) && count($engines) > 0}
+                            {foreach from=$engines item=engine}
+                                <option value="{$engine.engine_id}" {if isset($post) && $post.engine_id == $engine.engine}{else}{if isset($data) && $data.engine_id == $engine.engine_id}selected="selected"{/if}{/if} >{$engine.engine_name}</option>
+                            {/foreach}
+                        {/if}
+                    </select><br/>
+                </li>
+
+                <li>
+                    <label for="carrosserie_id">Choose carrosserie: </label>
+                    <select id="carrosserie_id" class="form-control" name="carrosserie_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($carrosseries) && is_array($carrosseries) && count($carrosseries) > 0}
+                            {foreach from=$carrosseries item=carrosserie}
+                                <option value="{$carrosserie.carrosserie_id}" {if isset($post) && $post.carrosserie_id == $carrosserie.carrosserie}{else}{if isset($data) && $data.carrosserie_id == $carrosserie.carrosserie_id}selected="selected"{/if}{/if} >{$carrosserie.carrosserie_name}</option>
+                            {/foreach}
+                        {/if}
+                    </select><br/>
+                </li>
+
+                <div id="update-vehicule" class="update-btn btn">Update</div>
+            </ul>
+        </fieldset>
+    </form>
+
+    <hr>
+    <h2>Equipements</h2>
+    <div class="message" id="response-equipement"></div>
+    <form method="post" action="">
+        <ul>
+            {if isset($equipements) && is_array($equipements) && count($equipements) > 0}
+                {foreach from=$equipements item=equipement}
+                    <li>
+                        <input type="checkbox" name="equipements_id[]" value="{$equipement.equipement_id}" {if ( isset($equipements_selected) && is_array($equipements_selected) && in_array( $equipement.equipement_id, $equipements_selected) )} checked="checked" {/if} > {$equipement.equipement_name} / {$equipement.equipement_id}
+                    </li>
+                {/foreach}
+            {/if}
+
+            <div id="update-equipements" class="update-btn btn">Update</div>
+            <div class="clear"></div>
+        </ul>
+    </form>
+
+    <hr>
+    <h2>Caracteristics</h2>
+    <div class="message" id="response-characteristic"></div>
+    <form method="post" action="">
+        <ul>
+            {if isset($characteristics) && is_array($characteristics) && count($characteristics) > 0}
+                {foreach from=$characteristics item=characteristic}
+                    <li>
+                        <!-- {$characteristic|var_dump} -->
+                        <input type="checkbox" name="characteristics_id[]" value="{$characteristic.characteristic_id}" {if ( isset($characteristics_selected) && is_array($characteristics_selected) && in_array( $characteristic.characteristic_id, $characteristics_selected) )} checked="checkeddsda" {/if} > {$characteristic.characteristic_name} /  {$characteristic.characteristic_id}
+
+                        <input type="text" id="desc-characteristic-id{$characteristic.characteristic_id}" name="characteristics[{$characteristic.characteristic_id}][description]" value="{if ( isset($characteristics_selected) && is_array($characteristics_selected) && in_array( $characteristic.characteristic_id, $characteristics_selected) )} {$characteristics_selected['description'][$characteristic.characteristic_id]} {/if}" {if ( isset($characteristics_selected) && is_array($characteristics_selected) && in_array( $characteristic.characteristic_id, $characteristics_selected) )} {else} disabled="disabled" {/if}>
+
+                    </li>
+                {/foreach}
+            {/if}
+            <div id="update-characteristics" class="update-btn btn">Update</div>
+            <div class="clear"></div>
+        </ul>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+
+    $(":checkbox").change('click', function () {
+
+        var characteristicID = $(this).val();
+        var descCharacteristic = $("#desc-characteristic-id" + characteristicID);
+        if ($(this).prop("checked") == true) {
+            descCharacteristic.removeAttr("disabled");
+        } else {
+            descCharacteristic.attr("disabled", "disabled");
+        }
+
+    });
+
+</script>
+
+<script>
+
+    $(document).ready(function(){
+
+
+        $("#update-vehicule").on('click',function(){
+
+
+            var response    = $("#response");
+
+            response.html('izprashtane na zaqvka...').removeClass("error").removeClass("success");
+
+            var button      = $(this);
+
+
+            //   1
+            var modele_name     = $("#modele_name").val();
+            var modele_slogan   = $("#modele_slogan").val();
+            var data1 = {
+                modele_name     : modele_name,
+                modele_slogan   : modele_slogan,
+            }
+            console.log('-----------------------');
+            console.log(data1);
+            //    2
+            //var holder          = button.parents('ul');
+            var holder          = button.parents('fieldset');
+            var modele_name     = holder.find("input[name=modele_name]").val();
+            var modele_slogan   = holder.find("input[name=modele_slogan]").val();
+
+            var data2 = {
+                modele_name     : modele_name,
+                modele_slogan   : modele_slogan
+            }
+            console.log('-----------------------');
+            console.log(data2);
+
+            //    3
+            var form            = button.parents('form');
+
+            var data3           = form.serialize();
+
+            console.log('-----------------------');
+            console.log(data3);
+
+
+            $.ajax({
+                url			: 'http://mobile.localhost/manager/vehicules/ajax/{$data.vehicule_id}',
+                type		: "POST",
+                dataType	: "json",
+                data		: data3,
+                success		: function( json ) {
+
+
+                    if ( json.status ) {
+                        // true
+                        response.addClass("success");
+                    } else{
+                        // false
+                        response.addClass("error");
+                    }
+
+                    response.html( json.message );
+
+                    console.log(json);
+
+
+                },
+                error		: function(error) {
+                    console.log(error);
+                    console.log(error.responseText);
+                }
+            });
+        });
+
+    });
+
+</script>
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#update-equipements").on('click',function(){
+
+
+            var response    = $("#response-equipement");
+
+            response.html('izprashtane na zaqvka...').removeClass("error").removeClass("success");
+
+            var button      = $(this);
+
+            //    3
+            var form          = button.parents('form');
+
+            var data3          = form.serialize();
+
+            console.log('-----------------------');
+            console.log(data3);
+
+            $.ajax({
+                url			: 'http://mobile.localhost/manager/vehicules_equipements/update/{$data.vehicule_id}',
+                type		: "POST",
+                dataType	: "json",
+                data		: data3,
+                success		: function( json ) {
+
+                    if ( json.status ) {
+                        // true
+                        response.addClass("success");
+                    } else{
+                        // false
+                        response.addClass("error");
+                    }
+
+                    response.html( json.message );
+
+                    console.log(json);
+
+                },
+                error		: function(error) {
+                    console.log(error);
+                    console.log(error.responseText);
+                }
+            });
+        });
+
+    });
+
+</script>
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#update-characteristics").on('click',function(){
+
+
+            var response    = $("#response-characteristic");
+
+            response.html('izprashtane na zaqvka...').removeClass("error").removeClass("success");
+
+            var button      = $(this);
+
+            //    3
+            var form        = button.parents('form');
+
+            var data3       = form.serialize();
+
+            console.log('-----------------------');
+            console.log(data3);
+
+            $.ajax({
+                url			: 'http://mobile.localhost/manager/vehicules_characteristics/update/{$data.vehicule_id}',
+                type		: "POST",
+                dataType	: "json",
+                data		: data3,
+                success		: function( json ) {
+
+                    if ( json.status ) {
+                        // true
+                        response.addClass("success");
+                    } else{
+                        // false
+                        response.addClass("error");
+                    }
+
+                    response.html( json.message );
+
+                    console.log(json);
+
+                },
+                error		: function(error) {
+                    console.log(error);
+                    console.log(error.responseText);
+                }
+            });
+        });
+
+    });
+
+</script>

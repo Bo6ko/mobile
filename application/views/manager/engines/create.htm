@@ -1,0 +1,30 @@
+<div class="section">
+
+    <div class="create-btn">
+        <a href="{$smarty.const.WEB_PATH}manager/vehicule_engines" class="btn">View all engines</a>
+    </div>
+    <div class="clear"></div>
+
+    {if isset($response) && !empty($response) }
+    <div class="message {if isset($response.status)}  {if !$response.status}error{else}success{/if} {/if}">
+        {$response.message}
+    </div>
+    {/if}
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>Create engines</legend>
+            <ul>
+                <li>
+                    <div class="d1"><label for="engine_name">Name: </label></div>
+                    <div class="d2"><input type="text" name="engine_name" id="engine_name" value="{if isset($post.engine_name)}{$post.engine_name|escape:'html'}{/if}" /></div>
+                </li>
+
+                <li>
+                    <input class="btn" type="submit" value="Create">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+</div>

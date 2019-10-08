@@ -1,0 +1,81 @@
+<div class="section">
+
+    <div class="create-btn">
+        <a href="{$smarty.const.WEB_PATH}manager/vehicules" class="btn">View all vehicules</a>
+    </div>
+    <div class="clear"></div>
+
+    {if isset($response) && !empty($response) }
+    <div class="message {if isset($response.status)}  {if !$response.status}error{else}success{/if} {/if}">
+        {$response.message}
+    </div>
+    {/if}
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>Create vehicules</legend>
+            <ul>
+                <li>
+                    <label for="marque_id">Marque: </label>
+                    <select id="marque_id" class="form-control" name="marque_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($marques) && is_array($marques) && count($marques) > 0 }
+                            {foreach from=$marques item=marque}
+                                <option value="{$marque.marque_id}" {if isset($post.marque_id) && $post.marque_id == $marque.marque_id}selected="selected"{/if}  >{$marque.marque_name|escape:'html'}</option>
+                            {/foreach}
+                        {/if}
+                    </select><br/>
+                </li>
+
+                <li>
+                    <label for="modele_id">Modele: </label>
+                    <select id="modele_id" class="form-control" name="modele_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($modeles) && is_array($modeles) && count($modeles) > 0 }
+                            {foreach from=$modeles item=modele}
+                                <option value="{$modele.modele_id}" {if isset($post.modele_id) && $post.modele_id == $modele.modele_id}selected="selected"{/if}  >{$modele.modele_name|escape:'html'}</option>
+                            {/foreach}
+                        {/if}
+
+                    </select><br/>
+                </li>
+
+                <li>
+                    <label for="engine_id">Engine: </label>
+                    <select id="engine_id" class="form-control" name="engine_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($engines) && is_array($engines) && count($engines) > 0 }
+                            {foreach from=$engines item=engine}
+                                <option value="{$engine.engine_id}" {if isset($post.engine_id) && $post.engine_id == $engine.engine_id}selected="selected"{/if}  >{$engine.engine_name|escape:'html'}</option>
+                            {/foreach}
+                        {/if}
+
+                    </select><br/>
+                </li>
+
+                <li>
+                    <label for="carrosserie_id">Carrosserie: </label>
+                    <select id="carrosserie_id" class="form-control" name="carrosserie_id">
+                        <option value=""> - choose - </option>
+
+                        {if isset($carrosseries) && is_array($carrosseries) && count($carrosseries) > 0 }
+                            {foreach from=$carrosseries item=carrosserie}
+                                <option value="{$carrosserie.carrosserie_id}" {if isset($post.carrosserie_id) && $post.carrosserie_id == $carrosserie.carrosserie_id}selected="selected"{/if}  >{$carrosserie.carrosserie_name|escape:'html'}</option>
+                            {/foreach}
+                        {/if}
+
+                    </select><br/>
+                </li>
+
+
+                <li>
+                    <input class="btn" type="submit" value="Create">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+</div>

@@ -1,0 +1,126 @@
+<div class="section">
+
+    <div class="create-btn">
+        <a href="{$smarty.const.WEB_PATH}manager/vehicule_modeles" class="btn">View all modeles</a>
+        <div class="clear"></div>
+    </div>
+
+    <div class="message" id="response"></div>
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>Update modele</legend>
+            <ul>
+                <li>
+                    <div class="d1"><label for="marque_id">Marque: </label></div>
+                    <div class="d2">
+                        <select id="marque_id" class="form-control" name="marque_id">
+                            <option value=""> - choise - </option>
+
+                            {if isset($marques) && is_array($marques) && count($marques) > 0}
+                                {foreach from=$marques item=marque}
+                                    <option value="{$marque.marque_id}" {if isset($post) && $post.marque_id == $marque.marque_id}{else}{if isset($data) && $data.marque_id == $marque.marque_id}selected="selected"{/if}{/if} >{$marque.marque_name}</option>
+                                {/foreach}
+                            {/if}
+                        </select>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="d1"><label for="modele_name">Name: </label></div>
+                    <div class="d2"><input type="text" name="modele_name" class="form-control" id="modele_name" value="{if isset($post.modele_name)}{$post.modele_name|escape:'html'}{else}{if isset($data.modele_name)}{$data.modele_name|escape:'html'}{/if}{/if}" /></div>
+                </li>
+
+
+                <li>
+                    <div class="d1"><label for="modele_slogan">Slogan: </label></div>
+                    <div class="d2"><input type="text" name="modele_slogan" class="form-control" id="modele_slogan" value="{if isset($data.modele_slogan)}{$data.modele_slogan|escape:'html'}{/if}" /></div>
+                </li>
+
+                <div id="update-modele" class="update-btn btn">Update</div>
+            </ul>
+        </fieldset>
+    </form>
+
+
+
+</div>
+
+<script>
+
+    $(document).ready(function(){
+
+
+        $("#update-modele").on('click',function(){
+
+
+            var response    = $("#response");
+
+            response.html('izprashtane na zaqvka...').removeClass("error").removeClass("success");
+
+            var button      = $(this);
+
+
+            //   1
+            var modele_name     = $("#modele_name").val();
+            var modele_slogan   = $("#modele_slogan").val();
+            var data1 = {
+                modele_name     : modele_name,
+                modele_slogan   : modele_slogan,
+            }
+            console.log('-----------------------');
+            console.log(data1);
+            //    2
+            //var holder          = button.parents('ul');
+            var holder          = button.parents('fieldset');
+            var modele_name     = holder.find("input[name=modele_name]").val();
+            var modele_slogan   = holder.find("input[name=modele_slogan]").val();
+
+            var data2 = {
+                modele_name     : modele_name,
+                modele_slogan   : modele_slogan
+            }
+            console.log('-----------------------');
+            console.log(data2);
+
+            //    3
+            var form          = button.parents('form');
+
+            var data3          = form.serialize();
+
+            console.log('-----------------------');
+            console.log(data3);
+
+
+            $.ajax({
+                url			: 'http://mobile.localhost/manager/vehicule_modeles/ajax/{$data.modele_id}',
+                type		: "POST",
+                dataType	: "json",
+                data		: data3,
+                success		: function( json ) {
+
+
+                    if ( json.status ) {
+                        // true
+                        response.addClass("success");
+                    } else{
+                        // false
+                        response.addClass("error");
+                    }
+
+                    response.html( json.message );
+
+                    console.log(json);
+
+
+                },
+                error		: function(error) {
+                    console.log(error);
+                    console.log(error.responseText);
+                }
+            });
+        });
+
+    });
+
+</script>

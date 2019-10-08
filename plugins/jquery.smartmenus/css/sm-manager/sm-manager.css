@@ -1,0 +1,324 @@
+.sm-manager {
+  border-top: 1px solid rgba(200, 200, 200, 0.2);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+}
+.sm-manager a, .sm-manager a:hover, .sm-manager a:focus, .sm-manager a:active {
+  padding: 13px 20px;
+  /* make room for the toggle button (sub indicator) */
+  padding-right: 58px;
+  color: #fff;
+  font-size: 11px;;
+  font-weight: normal;
+  line-height: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.sm-manager a.current {
+  font-weight: bold;
+}
+.sm-manager a.disabled {
+  color: #cccccc;
+}
+.sm-manager a span.sub-arrow {
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: auto;
+  right: 4px;
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  font: bold 14px/34px monospace !important;
+  text-align: center;
+  text-shadow: none;
+  background: rgba(200,200,200, 0.2);
+}
+.sm-manager a.highlighted span.sub-arrow:before {
+  display: block;
+  content: '-';
+}
+.sm-manager li {
+  border-top: 1px solid rgba(200,200,200, 0.2);
+}
+.sm-manager > li:first-child {
+  border-top: 0;
+}
+.sm-manager ul {
+  background: rgba(200,200,200, 0.2);
+}
+.sm-manager ul a, .sm-manager ul a:hover, .sm-manager ul a:focus, .sm-manager ul a:active {
+  font-size: 10px;
+  border-left: 8px solid transparent;
+}
+.sm-manager ul ul a,
+.sm-manager ul ul a:hover,
+.sm-manager ul ul a:focus,
+.sm-manager ul ul a:active {
+  border-left: 16px solid transparent;
+}
+.sm-manager ul ul ul a,
+.sm-manager ul ul ul a:hover,
+.sm-manager ul ul ul a:focus,
+.sm-manager ul ul ul a:active {
+  border-left: 24px solid transparent;
+}
+.sm-manager ul ul ul ul a,
+.sm-manager ul ul ul ul a:hover,
+.sm-manager ul ul ul ul a:focus,
+.sm-manager ul ul ul ul a:active {
+  border-left: 32px solid transparent;
+}
+.sm-manager ul ul ul ul ul a,
+.sm-manager ul ul ul ul ul a:hover,
+.sm-manager ul ul ul ul ul a:focus,
+.sm-manager ul ul ul ul ul a:active {
+  border-left: 40px solid transparent;
+}
+
+@media (min-width: 768px) {
+  /* Switch to desktop layout
+  -----------------------------------------------
+     These transform the menu tree from
+     collapsible to desktop (navbar + dropdowns)
+  -----------------------------------------------*/
+  /* start... (it's not recommended editing these rules) */
+  .sm-manager ul {
+    position: absolute;
+    width: 12em;
+  }
+
+  .sm-manager li {
+    float: left;
+  }
+
+  .sm-manager.sm-rtl li {
+    float: right;
+  }
+
+  .sm-manager ul li, .sm-manager.sm-rtl ul li, .sm-manager.sm-vertical li {
+    float: none;
+  }
+
+  .sm-manager a {
+    white-space: nowrap;
+  }
+
+  .sm-manager ul a, .sm-manager.sm-vertical a {
+    white-space: normal;
+  }
+
+  .sm-manager .sm-nowrap > li > a, .sm-manager .sm-nowrap > li > :not(ul) a {
+    white-space: nowrap;
+  }
+
+  /* ...end */
+  .sm-manager {
+    border-top: 0;
+    background: transparent;
+  }
+  .sm-manager a, .sm-manager a:hover, .sm-manager a:focus, .sm-manager a:active, .sm-manager a.highlighted {
+    padding: 5px 10px;
+    color: #fff;
+  }
+  .sm-manager a:hover, .sm-manager a:focus, .sm-manager a:active {
+    background: #0a61a8;
+    color: #fff;
+  }
+  .sm-manager a.highlighted {
+    background: #ffa200;
+    color: #000;
+    -webkit-box-shadow: 0 4px 3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 4px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.25);
+  }
+  .sm-manager a.disabled {
+    background: transparent;
+    color: #cccccc;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  .sm-manager a.has-submenu {
+    padding-right: 34px;
+  }
+  .sm-manager a span.sub-arrow {
+    top: 50%;
+    margin-top: -3px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-width: 6px 4.02px 0 4.02px;
+    border-style: solid dashed dashed dashed;
+    border-color: #fff transparent transparent transparent;
+    background: transparent;
+  }
+  .sm-manager a:hover span.sub-arrow, .sm-manager a:focus span.sub-arrow, .sm-manager a:active span.sub-arrow {
+    border-color: white transparent transparent transparent;
+  }
+  .sm-manager a.highlighted span.sub-arrow {
+    border-color: #ffffff transparent transparent transparent;
+  }
+  .sm-manager a.disabled span.sub-arrow {
+    border-color: #ffffff transparent transparent transparent;
+  }
+  .sm-manager a.highlighted span.sub-arrow:before {
+    display: none;
+  }
+  .sm-manager li {
+    border-top: 0;
+  }
+  .sm-manager ul {
+    border: 0;
+    padding: 8px 0;
+    background: #046abd;
+    -webkit-box-shadow: 0 4px 3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 4px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.25);
+  }
+  .sm-manager ul ul {
+  }
+  .sm-manager ul a, .sm-manager ul a:hover, .sm-manager ul a:focus, .sm-manager ul a:active, .sm-manager ul a.highlighted {
+    border: 0 !important;
+    padding: 5px 20px;
+    color: #fff;
+  }
+  .sm-manager ul a:hover, .sm-manager ul a:focus, .sm-manager ul a:active, .sm-manager ul a.highlighted {
+    background: #ffa200;
+    color: #000;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  .sm-manager ul a.disabled {
+    background: transparent;
+    color: #b3b3b3;
+  }
+  .sm-manager ul a.has-submenu {
+    padding-right: 20px;
+  }
+  .sm-manager ul a span.sub-arrow {
+    right: 10px;
+    margin-top: -4.02px;
+    border-width: 4.02px 0 4.02px 6px;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent #0a61a8;
+  }
+  .sm-manager ul a:hover span.sub-arrow, .sm-manager ul a:focus span.sub-arrow, .sm-manager ul a:active span.sub-arrow, .sm-manager ul a.highlighted span.sub-arrow {
+    border-color: transparent transparent transparent white;
+  }
+  .sm-manager ul a.disabled span.sub-arrow {
+    border-color: transparent transparent transparent #0a61a8;
+  }
+  .sm-manager span.scroll-up,
+  .sm-manager span.scroll-down {
+    position: absolute;
+    display: none;
+    visibility: hidden;
+    overflow: hidden;
+    background: #046abd;
+    height: 20px;
+  }
+  .sm-manager span.scroll-up-arrow, .sm-manager span.scroll-down-arrow {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-width: 0 6px 8px 6px;
+    border-style: dashed dashed solid dashed;
+    border-color: transparent transparent #0a61a8 transparent;
+  }
+  .sm-manager span.scroll-down-arrow {
+    border-width: 8px 6px 0 6px;
+    border-style: solid dashed dashed dashed;
+    border-color: #0a61a8 transparent transparent transparent;
+  }
+  .sm-manager.sm-rtl a.has-submenu {
+    padding-right: 20px;
+    padding-left: 34px;
+  }
+  .sm-manager.sm-rtl a span.sub-arrow {
+    right: auto;
+    left: 20px;
+  }
+  .sm-manager.sm-rtl.sm-vertical {
+    border-right: 0;
+    border-left: 2px solid #0a61a8;
+  }
+  .sm-manager.sm-rtl.sm-vertical a {
+  }
+  .sm-manager.sm-rtl.sm-vertical a.has-submenu {
+    padding: 10px 20px;
+  }
+  .sm-manager.sm-rtl.sm-vertical a span.sub-arrow {
+    right: auto;
+    left: 10px;
+    border-width: 4.02px 6px 4.02px 0;
+    border-style: dashed solid dashed dashed;
+    border-color: transparent #0a61a8 transparent transparent;
+  }
+  .sm-manager.sm-rtl.sm-vertical a:hover span.sub-arrow, .sm-manager.sm-rtl.sm-vertical a:focus span.sub-arrow, .sm-manager.sm-rtl.sm-vertical a:active span.sub-arrow, .sm-manager.sm-rtl.sm-vertical a.highlighted span.sub-arrow {
+    border-color: transparent white transparent transparent;
+  }
+  .sm-manager.sm-rtl.sm-vertical a.disabled span.sub-arrow {
+    border-color: transparent #0a61a8 transparent transparent;
+  }
+  .sm-manager.sm-rtl ul {
+  }
+  .sm-manager.sm-rtl ul a {
+  }
+  .sm-manager.sm-rtl ul a.has-submenu {
+    padding: 10px 20px !important;
+  }
+  .sm-manager.sm-rtl ul a span.sub-arrow {
+    right: auto;
+    left: 10px;
+    border-width: 4.02px 6px 4.02px 0;
+    border-style: dashed solid dashed dashed;
+    border-color: transparent #0a61a8 transparent transparent;
+  }
+  .sm-manager.sm-rtl ul a:hover span.sub-arrow, .sm-manager.sm-rtl ul a:focus span.sub-arrow, .sm-manager.sm-rtl ul a:active span.sub-arrow, .sm-manager.sm-rtl ul a.highlighted span.sub-arrow {
+    border-color: transparent white transparent transparent;
+  }
+  .sm-manager.sm-rtl ul a.disabled span.sub-arrow {
+    border-color: transparent #0a61a8 transparent transparent;
+  }
+  .sm-manager.sm-vertical {
+    border-bottom: 0;
+    border-right: 2px solid #0a61a8;
+  }
+  .sm-manager.sm-vertical a {
+    padding: 10px 20px;
+  }
+  .sm-manager.sm-vertical a:hover, .sm-manager.sm-vertical a:focus, .sm-manager.sm-vertical a:active, .sm-manager.sm-vertical a.highlighted {
+    background: #0a61a8;
+    color: white;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  .sm-manager.sm-vertical a.disabled {
+    background: transparent;
+    color: #cccccc;
+  }
+  .sm-manager.sm-vertical a span.sub-arrow {
+    right: 10px;
+    margin-top: -4.02px;
+    border-width: 4.02px 0 4.02px 6px;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent #0a61a8;
+  }
+  .sm-manager.sm-vertical a:hover span.sub-arrow, .sm-manager.sm-vertical a:focus span.sub-arrow, .sm-manager.sm-vertical a:active span.sub-arrow, .sm-manager.sm-vertical a.highlighted span.sub-arrow {
+    border-color: transparent transparent transparent white;
+  }
+  .sm-manager.sm-vertical a.disabled span.sub-arrow {
+    border-color: transparent transparent transparent #0a61a8;
+  }
+  .sm-manager.sm-vertical ul {
+  }
+  .sm-manager.sm-vertical ul a {
+    padding: 10px 20px;
+  }
+}

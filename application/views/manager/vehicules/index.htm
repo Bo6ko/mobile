@@ -1,0 +1,175 @@
+<div class="section">
+
+	<div class="create-btn">
+		<a href="{$smarty.const.WEB_PATH}manager/vehicules/create" class="btn btn-create">Create</a>
+	</div>
+	<div class="clear"></div>
+
+	<div class="search">
+		<form method="get" action="">
+
+			<fieldset>
+				<legend>Search {if isset($rows) && !empty($rows) && is_array($rows) && count($rows) > 0 }{count($rows)}{/if}</legend>
+				<ul>
+					<li>
+						<label for="marque_id">Marque: </label>
+						<select id="marque_id" class="form-control" name="marque_id">
+							<option value=""> - choose - </option>
+
+							{if isset($marques) && is_array($marques) && count($marques) > 0 }
+								{foreach from=$marques item=marque}
+									<option value="{$marque.marque_id}" {if isset($filters.marque_id) && $filters.marque_id == $marque.marque_id}selected="selected"{/if}  >{$marque.marque_name|escape:'html'}</option>
+								{/foreach}
+							{/if}
+
+						</select><br/>
+					</li>
+
+					<li>
+						<label for="modele_id">Modele: </label>
+						<select id="modele_id" class="form-control" name="modele_id">
+							<option value=""> - choose - </option>
+
+							{if isset($modeles) && is_array($modeles) && count($modeles) > 0 }
+								{foreach from=$modeles item=modele}
+									<option value="{$modele.modele_id}" {if isset($filters.modele_id) && $filters.modele_id == $modele.modele_id}selected="selected"{/if}  >{$modele.modele_name|escape:'html'}</option>
+								{/foreach}
+							{/if}
+
+						</select><br/>
+					</li>
+
+					<li>
+						<label for="engine_id">Engine: </label>
+						<select id="engine_id" class="form-control" name="engine_id">
+							<option value=""> - choose - </option>
+
+							{if isset($engines) && is_array($engines) && count($engines) > 0 }
+								{foreach from=$engines item=engine}
+									<option value="{$engine.engine_id}" {if isset($filters.engine_id) && $filters.engine_id == $modele.engine_id}selected="selected"{/if} >{$engine.engine_name|escape:'html'}</option>
+								{/foreach}
+							{/if}
+						</select><br/>
+					</li>
+
+					<li>
+						<label for="carrosserie_id">Carrosserie: </label>
+						<select id="carrosserie_id" class="form-control" name="carrosserie_id">
+							<option value=""> - choose - </option>
+
+							{if isset($carrosseries) && is_array($carrosseries) && count($carrosseries) > 0}
+								{foreach from=$carrosseries item=carrosserie}
+									<option value="{$carrosserie.carrosserie_id}" {if isset($filters.carrosserie_id) && $filters.carrosserie_id == $carrosserie.carrosserie_id}select="selected"{/if} >{$carrosserie.carrosserie_name|escape:'html'}</option>
+								{/foreach}
+							{/if}
+						</select><br/>
+					</li>
+
+					<li>
+						<label for="from_date">From date: </label>
+						<div class="form-group">
+							<div class='input-group date' id='datepicker-from'>
+								<input name="from_date" type='text' class="form-control" id="from_date" value="{if isset($filters.from_date)}{$filters.from_date}{/if}" />
+								<span class="input-group-addon">
+		                        	<span class="glyphicon glyphicon-calendar"></span>
+		                    	</span>
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<label for="to_date">То date: </label>
+						<div class="form-group">
+							<div class='input-group date' id='datepicker-to'>
+								<input type='text' name="to_date" class="form-control" id="to_date" value="{if isset($filters.to_date)}{$filters.to_date}{/if}"/>
+								<span class="input-group-addon">
+		                        	<span class="glyphicon glyphicon-calendar"></span>
+		                    	</span>
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<input class="btn" type="submit" value="Search">
+					</li>
+					<div class="clear"></div>
+				</ul>
+			</fieldset>
+
+		</form>
+	</div>
+
+	{if isset($rows) && !empty($rows) && is_array($rows) && count($rows) > 0 }
+	<table class="grid" style="width: 100%; margin: 40px 0px;" border=1>
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Marque</th>
+			<th>Marque slogan</th>
+			<th>Modele name</th>
+			<th>Modele slogan</th>
+			<th>Engine name</th>
+			<th>Carrosserie name</th>
+			<th>Date created</th>
+			<th>Date modified</th>
+			<th></th>
+		</tr>
+		</thead>
+
+		<tbody>
+		{foreach from=$rows item=row}
+		<tr>
+			<td>{$row.vehicule_id}</td>
+			<td>{$row.marque_name}</td>
+			<td>{$row.marque_slogan}</td>
+			<td>{$row.modele_name}</td>
+			<td>{$row.modele_slogan}</td>
+			<td>{$row.engine_name}</td>
+			<td>{$row.carrosserie_name}</td>
+			<td>{$row.modele_date_creation}</td>
+			<td>{$row.modele_date_modification|date_format:'%Y/%m'}</td>
+			<td style="text-align: center; color: red;">
+				<strong><a class="edit" href="{$smarty.const.WEB_PATH}manager/vehicules/update/{$row.vehicule_id}"></a></strong>
+			</td>
+		</tr>
+		{/foreach}
+		</tbody>
+	</table>
+	{else}
+		<div>Not finded results!</div>
+		<a href="{$smarty.const.WEB_PATH}manager/vehicules">View all results.</a>
+	{/if}
+
+
+</div>
+
+<script type="text/javascript" src="{$smarty.const.WEB_PATH}js/manager/bootstrap-datepicker.min.js"></script>
+<script >
+	$(function () {
+		$('#datepicker-from').datepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true,
+			todayHighlight: true,
+			showOtherMonths: true,
+			selectOtherMonths: true,
+			autoclose: true,
+			changeMonth: true,
+			changeYear: true,
+			orientation: "button"
+		});
+	});
+
+	$(function () {
+		$('#datepicker-to').datepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true,
+			todayHighlight: true,
+			showOtherMonths: true,
+			selectOtherMonths: true,
+			autoclose: true,
+			changeMonth: true,
+			changeYear: true,
+			orientation: "button"
+		});
+	});
+</script>

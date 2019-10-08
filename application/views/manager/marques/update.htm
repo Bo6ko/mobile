@@ -1,0 +1,42 @@
+<div class="section">
+
+    <div class="create-btn">
+        <a href="{$smarty.const.WEB_PATH}manager/vehicule_marques" class="btn" role="button"><span>View all marques</span></a>
+    </div>
+    <div class="clear"></div>
+
+    {if isset($response) && !empty($response) }
+    <div class="message {if isset($response.status)}  {if !$response.status}error{else}success{/if} {/if}">
+        {$response.message}
+    </div>
+    {/if}
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>Update marque</legend>
+            <ul>
+                <li>
+                    <div class="d1"><label for="marque_name">Name: </label></div>
+                    <div class="d2"><input type="text" name="marque_name" id="marque_name" value="{if isset($post.marque_name)}{$post.marque_name|escape:'html'}{else}{if isset($data.marque_name)}{$data.marque_name|escape:'html'}{/if}{/if}" /></div>
+                </li>
+
+
+                <li>
+                    <div class="d1"><label for="marque_slogan">Slogan: </label></div>
+                    <div class="d2"><input type="text" name="marque_slogan" id="marque_slogan" value="{if isset($data.marque_slogan)}{$data.marque_slogan|escape:'html'}{/if}" /></div>
+                </li>
+
+                <li>
+                    <input class="btn" type="submit" value="Update">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+    <div id="marque_update" class="create-btn">
+        <!--<a href="{$smarty.const.WEB_PATH}manager/vehicule_marques/ajax" class="btn" role="button">--><span>Ajax post</span>
+    </div>
+    <div class="clear"></div>
+
+
+</div>

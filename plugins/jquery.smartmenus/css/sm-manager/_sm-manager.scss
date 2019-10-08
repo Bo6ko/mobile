@@ -1,0 +1,570 @@
+@import 'compass';
+
+// This file is best viewed with Tab size 4 code indentation
+
+
+// -----------------------------------------------------------------------------------------------------------------
+// 1. Theme Quick Settings (Variables)
+// (for further control, you will need to dig into the actual CSS in 2.)
+// -----------------------------------------------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------
+// :: 1.1. Colors
+// ----------------------------------------------------------
+
+$sm-manager__white:										#fff !default;
+$sm-manager__black:										#333 !default;
+$sm-manager__green:										#F6FFED !default;
+$sm-manager__green-dark:									#8db863 !default;
+
+$sm-manager__box-shadow:									rgba(0, 0, 0, 0.25) !default;
+
+
+// ----------------------------------------------------------
+// :: 1.2. Breakpoints
+// ----------------------------------------------------------
+
+$sm-manager__desktop-vp:									768px !default;		// switch from collapsible to desktop
+
+
+// ----------------------------------------------------------
+// :: 1.3. Typography
+// ----------------------------------------------------------
+
+$sm-manager__font-family:									Arial, sans-serif !default;
+$sm-manager__font-size-base:								16px !default;
+$sm-manager__font-size-small:								14px !default;
+$sm-manager__line-height:									17px !default;
+
+
+// ----------------------------------------------------------
+// :: 1.4. Borders
+// ----------------------------------------------------------
+
+$sm-manager__border-width:									2px !default;
+$sm-manager__border-radius-base:							4px !default;
+
+
+// ----------------------------------------------------------
+// :: 1.5. Collapsible main menu
+// ----------------------------------------------------------
+
+// Menu box
+$sm-manager__collapsible-bg:								$sm-manager__white !default;
+$sm-manager__collapsible-border-color:						$sm-manager__green-dark !default;
+
+// Items
+$sm-manager__collapsible-item-color:						$sm-manager__black !default;
+$sm-manager__collapsible-item-disabled-color:				darken($sm-manager__white, 20%) !default;
+$sm-manager__collapsible-item-padding-vertical:			13px !default;
+$sm-manager__collapsible-item-padding-horizontal:			20px !default;
+
+// Items separators
+$sm-manager__collapsible-separators-color:					rgba($sm-manager__green-dark, 0.2) !default;
+
+// Toggle button (sub menu indicators)
+$sm-manager__collapsible-toggle-bg:						rgba($sm-manager__green-dark, 0.2) !default;
+
+
+// ----------------------------------------------------------
+// :: 1.6. Collapsible sub menus
+// ----------------------------------------------------------
+
+// Menu box
+$sm-manager__collapsible-sub-bg:							rgba($sm-manager__green-dark, 0.2) !default;
+
+// Items text indentation for deeper levels
+$sm-manager__collapsible-sub-item-indentation:				8px !default;
+
+
+// ----------------------------------------------------------
+// :: 1.7. Desktop main menu
+// ----------------------------------------------------------
+
+// Menu box
+$sm-manager__desktop-bg:									transparent !default;
+
+// Items
+$sm-manager__desktop-item-color:							$sm-manager__black !default;
+$sm-manager__desktop-item-hover-color:						$sm-manager__white !default;
+$sm-manager__desktop-item-hover-bg:						$sm-manager__green-dark !default;
+$sm-manager__desktop-item-highlighted-color:				$sm-manager__black !default;
+$sm-manager__desktop-item-highlighted-bg:					$sm-manager__green !default;
+$sm-manager__desktop-item-highlighted-box-shadow:			0 4px 3px $sm-manager__box-shadow !default;
+$sm-manager__desktop-item-disabled-color:					darken($sm-manager__white, 20%) !default;
+$sm-manager__desktop-item-padding-vertical:				11px !default;
+$sm-manager__desktop-item-padding-horizontal:				20px !default;
+
+// Sub menu indicators
+$sm-manager__desktop-arrow-size:							6px !default;		// border-width
+$sm-manager__desktop-arrow-color:							$sm-manager__green-dark !default;
+$sm-manager__desktop-arrow-hover-color:					$sm-manager__white !default;
+$sm-manager__desktop-arrow-highlighted-color:				$sm-manager__green-dark !default;
+$sm-manager__desktop-arrow-spacing:						6px !default;
+
+// Vertical items
+$sm-manager__desktop-vertical-item-highlighted-color:		$sm-manager__desktop-item-hover-color !default;
+$sm-manager__desktop-vertical-item-highlighted-bg:			$sm-manager__desktop-item-hover-bg !default;
+$sm-manager__desktop-vertical-item-padding-vertical:		10px !default;
+$sm-manager__desktop-vertical-item-padding-horizontal:		20px !default;
+
+
+// ----------------------------------------------------------
+// :: 1.8. Desktop sub menus
+// ----------------------------------------------------------
+
+// Menu box
+$sm-manager__desktop-sub-bg:								$sm-manager__green !default;
+$sm-manager__desktop-sub-box-shadow:						0 4px 3px $sm-manager__box-shadow !default;
+$sm-manager__desktop-sub-padding-vertical:					8px !default;
+$sm-manager__desktop-sub-padding-horizontal:				0 !default;
+
+// Items
+$sm-manager__desktop-sub-item-color:						$sm-manager__black !default;
+$sm-manager__desktop-sub-item-hover-color:					$sm-manager__white !default;
+$sm-manager__desktop-sub-item-hover-bg:					$sm-manager__green-dark !default;
+$sm-manager__desktop-sub-item-disabled-color:				lighten($sm-manager__black, 50%) !default;
+$sm-manager__desktop-sub-item-padding-vertical:			10px !default;
+$sm-manager__desktop-sub-item-padding-horizontal:			20px !default;
+
+
+// -----------------------------------------------------------------------------------------------------------------
+// 2. Theme CSS
+// -----------------------------------------------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------
+// :: 2.1. Collapsible mode (mobile first)
+// ----------------------------------------------------------
+
+// calc item height and sub menus toggle button size
+$sm-manager__item-height: $sm-manager__line-height + $sm-manager__collapsible-item-padding-vertical * 2;
+// set toggle button size to 80% of item height
+$sm-manager__toggle-size: floor($sm-manager__item-height * 0.8);
+$sm-manager__toggle-spacing: floor($sm-manager__item-height * 0.1);
+
+// Main menu box
+.sm-manager {
+	border-top: $sm-manager__border-width solid $sm-manager__collapsible-border-color;
+	border-bottom: $sm-manager__border-width solid $sm-manager__collapsible-border-color;
+	background: $sm-manager__collapsible-bg;
+
+	// Main menu items
+	a {
+		&,
+		&:hover,
+		&:focus,
+		&:active {
+			padding: $sm-manager__collapsible-item-padding-vertical $sm-manager__collapsible-item-padding-horizontal;
+			/* make room for the toggle button (sub indicator) */
+			padding-right: $sm-manager__collapsible-item-padding-horizontal + $sm-manager__toggle-size + $sm-manager__toggle-spacing;
+			color: $sm-manager__collapsible-item-color;
+			font-family: $sm-manager__font-family;
+			font-size: $sm-manager__font-size-base;
+			font-weight: normal;
+			line-height: $sm-manager__line-height;
+			text-decoration: none;
+		}
+
+		&.current {
+			font-weight: bold;
+		}
+
+		&.disabled {
+			color: $sm-manager__collapsible-item-disabled-color;
+		}
+
+		// Toggle buttons (sub menu indicators)
+		span.sub-arrow {
+			position: absolute;
+			top: 50%;
+			margin-top: -(ceil($sm-manager__toggle-size / 2));
+			left: auto;
+			right: $sm-manager__toggle-spacing;
+			width: $sm-manager__toggle-size;
+			height: $sm-manager__toggle-size;
+			overflow: hidden;
+			font: bold #{$sm-manager__font-size-small}/#{$sm-manager__toggle-size} monospace !important;
+			text-align: center;
+			text-shadow: none;
+			background: $sm-manager__collapsible-toggle-bg;
+			@include border-radius($sm-manager__border-radius-base);
+		}
+		// Change + to - on sub menu expand
+		&.highlighted span.sub-arrow:before {
+			display: block;
+			content: '-';
+		}
+	}
+
+	// Main menu items separators
+	li {
+		border-top: 1px solid $sm-manager__collapsible-separators-color;
+	}
+        > li:first-child {
+		border-top: 0;
+	}
+
+	// Sub menus box
+	ul {
+		background: $sm-manager__collapsible-sub-bg;
+
+		// Sub menus items
+		a {
+			&,
+			&:hover,
+			&:focus,
+			&:active {
+				font-size: $sm-manager__font-size-small;
+				// add indentation for sub menus text
+				border-left: $sm-manager__collapsible-sub-item-indentation solid transparent;
+			}
+		}
+
+		// Add indentation for sub menus text for deeper levels
+		@include sm-manager__sub-items-indentation($sm-manager__collapsible-sub-item-indentation);
+	}
+}
+
+
+// ----------------------------------------------------------
+// :: 2.2. Desktop mode
+// ----------------------------------------------------------
+
+@media (min-width: $sm-manager__desktop-vp) {
+
+	/* Switch to desktop layout
+	-----------------------------------------------
+	   These transform the menu tree from
+	   collapsible to desktop (navbar + dropdowns)
+	-----------------------------------------------*/
+	/* start... (it's not recommended editing these rules) */
+	.sm-manager ul{position:absolute;width:12em;}
+	.sm-manager li{float:left;}
+	.sm-manager.sm-rtl li{float:right;}
+	.sm-manager ul li,.sm-manager.sm-rtl ul li,.sm-manager.sm-vertical li{float:none;}
+	.sm-manager a{white-space:nowrap;}
+	.sm-manager ul a,.sm-manager.sm-vertical a{white-space:normal;}
+	.sm-manager .sm-nowrap > li > a,.sm-manager .sm-nowrap > li > :not(ul) a{white-space:nowrap;}
+	/* ...end */
+
+	// Main menu box
+	.sm-manager {
+		border-top: 0;
+		background: $sm-manager__desktop-bg;
+
+		// Main menu items
+		a {
+			&,
+			&:hover,
+			&:focus,
+			&:active,
+			&.highlighted {
+				padding: $sm-manager__desktop-item-padding-vertical $sm-manager__desktop-item-padding-horizontal;
+				color: $sm-manager__desktop-item-color;
+				@include border-radius($sm-manager__border-radius-base $sm-manager__border-radius-base 0 0);
+			}
+
+			&:hover,
+			&:focus,
+			&:active {
+				background: $sm-manager__desktop-item-hover-bg;
+				color: $sm-manager__desktop-item-hover-color;
+			}
+
+			&.highlighted {
+				background: $sm-manager__desktop-item-highlighted-bg;
+				color: $sm-manager__desktop-item-highlighted-color;
+				@include box-shadow($sm-manager__desktop-item-highlighted-box-shadow);
+			}
+
+			&.disabled {
+				background: transparent;
+				color: $sm-manager__desktop-item-disabled-color;
+				@include box-shadow(none);
+			}
+
+			// Make room for the sub arrows
+			&.has-submenu {
+				padding-right: $sm-manager__desktop-item-padding-horizontal + 8px + $sm-manager__desktop-arrow-spacing;
+			}
+
+			// Sub menu indicators
+			span.sub-arrow {
+				top: 50%;
+				margin-top: -(ceil($sm-manager__desktop-arrow-size / 2));
+				right: $sm-manager__desktop-item-padding-horizontal;
+				width: 0;
+				height: 0;
+				border-width: $sm-manager__desktop-arrow-size ($sm-manager__desktop-arrow-size * 0.67) 0 ($sm-manager__desktop-arrow-size * 0.67);
+				border-style: solid dashed dashed dashed;
+				border-color: $sm-manager__desktop-arrow-color transparent transparent transparent;
+				background: transparent;
+				@include border-radius(0);
+			}
+			&:hover span.sub-arrow,
+			&:focus span.sub-arrow,
+			&:active span.sub-arrow {
+				border-color: $sm-manager__desktop-arrow-hover-color transparent transparent transparent;
+			}
+			&.highlighted span.sub-arrow {
+				border-color: $sm-manager__desktop-arrow-highlighted-color transparent transparent transparent;
+			}
+			&.disabled span.sub-arrow {
+				border-color: $sm-manager__desktop-arrow-color transparent transparent transparent;
+			}
+			// reset mobile first style
+			&.highlighted span.sub-arrow:before {
+				display: none;
+			}
+		}
+
+		// No main menu items separators
+		li {
+			border-top: 0;
+		}
+
+		// Sub menus box
+		ul {
+			border: 0;
+			padding: $sm-manager__desktop-sub-padding-vertical $sm-manager__desktop-sub-padding-horizontal;
+			background: $sm-manager__desktop-sub-bg;
+			@include border-radius(0 $sm-manager__border-radius-base $sm-manager__border-radius-base $sm-manager__border-radius-base);
+			@include box-shadow($sm-manager__desktop-sub-box-shadow);
+
+			// 2+ sub levels need rounding of all corners
+			ul {
+				@include border-radius($sm-manager__border-radius-base);
+			}
+
+			// Sub menus items
+			a {
+				&,
+				&:hover,
+				&:focus,
+				&:active,
+				&.highlighted {
+					border: 0 !important;
+					padding: $sm-manager__desktop-sub-item-padding-vertical $sm-manager__desktop-sub-item-padding-horizontal;
+					color: $sm-manager__desktop-sub-item-color;
+					@include border-radius(0);
+				}
+
+				&:hover,
+				&:focus,
+				&:active,
+				&.highlighted {
+					background: $sm-manager__desktop-sub-item-hover-bg;
+					color: $sm-manager__desktop-sub-item-hover-color;
+					@include box-shadow(none);
+				}
+
+				&.disabled {
+					background: transparent;
+					color: $sm-manager__desktop-sub-item-disabled-color;
+				}
+
+				// No need for additional room for the sub arrows
+				&.has-submenu {
+					padding-right: $sm-manager__desktop-item-padding-horizontal;
+				}
+
+				// Sub menu indicators
+				span.sub-arrow {
+					right: 10px;
+					margin-top: -($sm-manager__desktop-arrow-size * 0.67);
+					border-width: ($sm-manager__desktop-arrow-size * 0.67) 0 ($sm-manager__desktop-arrow-size * 0.67) $sm-manager__desktop-arrow-size;
+					border-style: dashed dashed dashed solid;
+					border-color: transparent transparent transparent $sm-manager__desktop-arrow-color;
+				}
+				&:hover span.sub-arrow,
+				&:focus span.sub-arrow,
+				&:active span.sub-arrow,
+ 				&.highlighted span.sub-arrow {
+					border-color: transparent transparent transparent $sm-manager__desktop-arrow-hover-color;
+				}
+				&.disabled span.sub-arrow {
+					border-color: transparent transparent transparent $sm-manager__desktop-arrow-color;
+				}
+			}
+		}
+
+		// Scrolling arrows containers for tall sub menus - test sub menu: "Sub test" -> "more..." in the default download package
+		span.scroll-up,
+		span.scroll-down {
+			position: absolute;
+			display: none;
+			visibility: hidden;
+			overflow: hidden;
+			background: $sm-manager__desktop-sub-bg;
+			height: 20px;
+			// width and position will be set automatically by the script
+		}
+		span.scroll-up-arrow {
+			position: absolute;
+			top: 6px;
+			left: 50%;
+			margin-left: -8px;
+			// we will use one-side border to create a triangle so that we don't use a real background image, of course, you can use a real image if you like too
+			width: 0;
+			height: 0;
+			overflow: hidden;
+			border-width: 0 6px 8px 6px; // tweak size of the arrow
+			border-style: dashed dashed solid dashed;
+			border-color: transparent transparent $sm-manager__desktop-arrow-color transparent;
+		}
+		span.scroll-down-arrow {
+			@extend span.scroll-up-arrow;
+			border-width: 8px 6px 0 6px;
+			border-style: solid dashed dashed dashed;
+			border-color: $sm-manager__desktop-arrow-color transparent transparent transparent;
+		}
+
+
+		// Rigth-to-left
+
+		// Main menu box
+		&.sm-rtl {
+
+			// Main menu items
+			a {
+
+				// Make room for the sub arrows
+				&.has-submenu {
+					padding-right: $sm-manager__desktop-item-padding-horizontal;
+					padding-left: $sm-manager__desktop-item-padding-horizontal + 8px + $sm-manager__desktop-arrow-spacing;
+				}
+
+				// Sub menu indicators
+				span.sub-arrow {
+					right: auto;
+					left: $sm-manager__desktop-item-padding-horizontal;
+				}
+			}
+
+			// Vertical main menu
+			&.sm-vertical {
+				border-right: 0;
+				border-left: $sm-manager__border-width solid $sm-manager__collapsible-border-color;
+
+				// Vertical main menu items
+				a {
+					@include border-radius(0 $sm-manager__border-radius-base $sm-manager__border-radius-base 0);
+
+					// No need for additional room for the sub arrows
+					&.has-submenu {
+						padding: $sm-manager__desktop-vertical-item-padding-vertical $sm-manager__desktop-vertical-item-padding-horizontal;
+					}
+
+					// Sub menu indicators
+					span.sub-arrow {
+						right: auto;
+						left: 10px;
+						border-width: ($sm-manager__desktop-arrow-size * 0.67) $sm-manager__desktop-arrow-size ($sm-manager__desktop-arrow-size * 0.67) 0;
+						border-style: dashed solid dashed dashed;
+						border-color: transparent $sm-manager__desktop-arrow-color transparent transparent;
+					}
+					&:hover span.sub-arrow,
+					&:focus span.sub-arrow,
+					&:active span.sub-arrow,
+	 				&.highlighted span.sub-arrow {
+						border-color: transparent $sm-manager__desktop-arrow-hover-color transparent transparent;
+					}
+					&.disabled span.sub-arrow {
+						border-color: transparent $sm-manager__desktop-arrow-color transparent transparent;
+					}
+				}
+			}
+
+			// Sub menus box
+			ul {
+				@include border-radius($sm-manager__border-radius-base 0 $sm-manager__border-radius-base $sm-manager__border-radius-base);
+
+				a {
+					@include border-radius(0 !important);
+
+					// No need for additional room for the sub arrows
+					&.has-submenu {
+						padding: $sm-manager__desktop-sub-item-padding-vertical $sm-manager__desktop-sub-item-padding-horizontal !important;
+					}
+
+					// Sub menu indicators
+					span.sub-arrow {
+						right: auto;
+						left: 10px;
+						border-width: ($sm-manager__desktop-arrow-size * 0.67) $sm-manager__desktop-arrow-size ($sm-manager__desktop-arrow-size * 0.67) 0;
+						border-style: dashed solid dashed dashed;
+						border-color: transparent $sm-manager__desktop-arrow-color transparent transparent;
+					}
+					&:hover span.sub-arrow,
+					&:focus span.sub-arrow,
+					&:active span.sub-arrow,
+	 				&.highlighted span.sub-arrow {
+						border-color: transparent $sm-manager__desktop-arrow-hover-color transparent transparent;
+					}
+					&.disabled span.sub-arrow {
+						border-color: transparent $sm-manager__desktop-arrow-color transparent transparent;
+					}
+				}
+			}
+		}
+
+
+		// Vertical main menu
+
+		// Main menu box
+		&.sm-vertical {
+			border-bottom: 0;
+			border-right: $sm-manager__border-width solid $sm-manager__collapsible-border-color;
+
+			// Main menu items
+			a {
+				padding: $sm-manager__desktop-vertical-item-padding-vertical $sm-manager__desktop-vertical-item-padding-horizontal;
+				@include border-radius($sm-manager__border-radius-base 0 0 $sm-manager__border-radius-base);
+
+				&:hover,
+				&:focus,
+				&:active,
+				&.highlighted {
+					background: $sm-manager__desktop-item-hover-bg;
+					color: $sm-manager__desktop-item-hover-color;
+					@include box-shadow(none);
+				}
+
+				&.disabled {
+					background: transparent;
+					color: $sm-manager__desktop-item-disabled-color;
+				}
+
+				// Sub menu indicators
+				span.sub-arrow {
+					right: 10px;
+					margin-top: -($sm-manager__desktop-arrow-size * 0.67);
+					border-width: ($sm-manager__desktop-arrow-size * 0.67) 0 ($sm-manager__desktop-arrow-size * 0.67) $sm-manager__desktop-arrow-size;
+					border-style: dashed dashed dashed solid;
+					border-color: transparent transparent transparent $sm-manager__desktop-arrow-color;
+				}
+				&:hover span.sub-arrow,
+				&:focus span.sub-arrow,
+				&:active span.sub-arrow,
+ 				&.highlighted span.sub-arrow {
+					border-color: transparent transparent transparent $sm-manager__desktop-arrow-hover-color;
+				}
+				&.disabled span.sub-arrow {
+					border-color: transparent transparent transparent $sm-manager__desktop-arrow-color;
+				}
+			}
+
+			// Sub menus box
+			ul {
+				@include border-radius($sm-manager__border-radius-base !important);
+
+				// Sub menus items
+				a {
+					padding: $sm-manager__desktop-sub-item-padding-vertical $sm-manager__desktop-sub-item-padding-horizontal;
+				}
+			}
+		}
+	}
+}

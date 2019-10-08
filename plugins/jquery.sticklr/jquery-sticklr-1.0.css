@@ -1,0 +1,273 @@
+ /*
+ * Sticklr v1.0
+ * Sticky Side Panel CSS + jQuery Plugin
+ *
+ * Copyright 2011 amatyr4n
+ * http://codecanyon.net/user/amatyr4n
+ *
+ * licensed under Envato licenses
+ * http://wiki.envato.com/support/legal-terms/licensing-terms/
+ */
+ 
+.sticklr, 
+.sticklr * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: #555;
+    vertical-align: baseline;
+}
+
+.sticklr, 
+.sticklr > li > ul {
+    list-style-type: none;
+}
+
+.sticklr {
+    position: fixed;
+    top: 40%;
+    left: 0;
+    background-color: #f7f7f7;
+    background-color: rgba(0,149,255, 0.75);
+    border: 1px solid #0A71BA;
+    width: 25px;
+    overflow: visible;
+    z-index: 90;
+}
+
+.sticklr-right {
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid #0A71BA;
+}
+
+.sticklr > li {
+    position: relative;
+}
+
+.sticklr > li > a {
+    display: block;
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    background-color: #f0f0f0;
+    background-color: rgba(0,149,255, 0.75);
+    background-position: 4px 4px;
+    background-repeat: no-repeat;
+}
+
+.sticklr > li {
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #f7f7f7;    
+}
+
+.sticklr > li:first-child {
+    border-top: 0px;
+}
+
+.sticklr > li:last-child {
+    border-bottom: 0px;
+}
+
+.sticklr > li > a:hover {
+    background-color: #eaeaea;
+}
+
+.sticklr > li > ul {
+    display: none;
+    position: absolute;
+    left: 25px;
+    top: -2px;
+    width: 180px;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    z-index: 95;
+    opacity: 0.9 !important;
+}
+
+.sticklr-right > li > ul {
+    left: auto;
+    right: 25px;
+}
+
+.sticklr > li > ul:nth-child(3) {
+    left: 206px;
+}
+
+.sticklr > li > ul:nth-child(4) {
+    left: 387px;
+}
+
+.sticklr > li > ul:nth-child(5) {
+    left: 568px;
+}
+
+.sticklr > li > ul:nth-child(6) {
+    left: 749px;
+}
+
+.sticklr > li > ul:nth-child(7) {
+    left: 930px;
+}
+
+.sticklr-right > li > ul:nth-child(3) {
+    left: auto;
+    right: 206px;
+}
+
+.sticklr-right > li > ul:nth-child(4) {
+    left: auto;
+    right: 387px;
+}
+
+.sticklr-right > li > ul:nth-child(5) {
+    left: auto;
+    right: 568px;
+}
+
+.sticklr-right > li > ul:nth-child(6) {
+    left: auto;
+    right: 749px;
+}
+
+.sticklr-right > li > ul:nth-child(7) {
+    left: auto;
+    right: 930px;
+}
+
+.sticklr > li:hover > ul {
+    display: block;
+	float: left;
+}
+
+.sticklr.sticklr-js > li:hover > ul {
+    display: none;
+}
+
+.sticklr > li > ul > li {
+    border-bottom: 1px solid #f7f7f7;
+    border-right: 1px solid #f7f7f7;    
+    border-top: 1px solid #ccc;
+    min-width: 180px;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.sticklr > li > ul > li:first-child {
+    border-top: 1px solid #f7f7f7;
+}
+
+.sticklr > li > ul > li:last-child {
+    border-bottom: 1px solid #f7f7f7;
+}
+
+.sticklr > li > ul > li {
+	border: none !ie;
+}
+
+.sticklr > li > ul > li > a {
+    display: block;
+    padding: 8px 10px 8px 32px;
+    background-color: #fff;
+    background-position: 10px;
+    background-repeat: no-repeat;
+    color: #555;
+    min-height: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+	background-color: transparent !ie;
+}
+
+.sticklr > li > ul > li > a:hover {
+    background-color: #eaeaea;
+}
+.sticklr > li > ul > li.explain {
+	padding: 5px;
+	line-height: 15px;
+	font-size: 12px;
+}
+.sticklr > li > ul > li.explain p {
+	
+}
+.sticklr > li > ul > li.sticklr-title h4 {
+	padding: 10px;
+	font-weight: 500;
+	text-transform: uppercase;
+	color: #000;
+}
+.sticklr > li > ul > li.sticklr-title > a {
+    padding-left: 10px;
+    background-color: #e6e6e6;
+    cursor: default;
+	background-color: transparent !ie;
+}
+
+.sticklr > li > ul > li.sticklr-title > a:hover {
+    background-color: #e6e6e6;
+	background-color: transparent !ie;
+}
+
+.sticklr > li > ul > li > table {
+	border-collapse:collapse;
+	border-spacing: 0;
+}
+
+.sticklr > li > ul > li > form {
+    padding: 8px 10px;
+}
+
+.sticklr > li > ul > li input,
+.sticklr > li > ul > li select, 
+.sticklr > li > ul > li textarea,
+.sticklr > li > ul > li button  {
+    margin: 4px 0;
+    padding: 4px;
+}
+
+.sticklr > li > ul > li input[type="text"],
+.sticklr > li > ul > li input[type="password"],
+.sticklr > li > ul > li textarea {
+    border: 1px solid #ccc;
+    min-width: 150px;
+    width: auto;
+}
+
+.sticklr > li > ul > li input[type="submit"] {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.sticklr-arrow {
+    position: absolute;
+    left: 25px;
+    top: 8px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #0A71BA;
+    border-right: none;
+}
+
+.sticklr-right .sticklr-arrow {
+    left: auto;
+    right: 25px;
+    border-right: 5px solid #fff;
+    border-left: none;
+}
+
+/* icons */
+.icon-search {background-image: url('img/icon-search.png');}
+.icon-service {background-image: url('img/icon-service.png');}
+.icon-location {background-image: url('img/icon-location.png');}
+.icon-phone {background-image: url('img/icon-phone.png');}
+.icon-contact {background-image: url('img/icon-contact.png');}
+.icon-compare {background-image: url('img/icon-compare.png');}
+.icon-favorites {background-image: url('img/icon-favorites.png');}

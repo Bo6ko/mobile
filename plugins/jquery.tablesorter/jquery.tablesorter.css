@@ -1,0 +1,9 @@
+.sorted {margin: 0 auto;font-size: 1.2em;margin-bottom: 15px;}
+.sorted thead {cursor: pointer;}
+.sorted thead tr th {font-weight: bold;}
+.sorted thead tr th span { padding-right: 20px;background-repeat: no-repeat;background-position: 100% 100%;}
+.sorted thead tr th.headerSortUp,
+.sorted thead tr th.headerSortDown {background-color: #000;}
+/*.sorted thead tr th.headerSortUp {background-image: url('up-arrow.png');background-position: right center;background-repeat: no-repeat;}
+.sorted thead tr th.headerSortDown {background-image: url('down-arrow.png');background-position: right center;background-repeat: no-repeat;}*/
+.sorted tbody tr {color: #555;}

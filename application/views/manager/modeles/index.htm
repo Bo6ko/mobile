@@ -1,0 +1,142 @@
+<div class="section">
+
+	<div class="create-btn">
+		<a href="{$smarty.const.WEB_PATH}manager/vehicule_modeles/create" class="btn btn-create">Create</a>
+	</div>
+	<div class="clear"></div>
+
+
+
+	<div class="search">
+		<form method="get" action="">
+
+			<fieldset>
+				<legend>Search {if isset($rows) && !empty($rows) && is_array($rows) && count($rows) > 0 }{count($rows)}{/if}</legend>
+				<ul>
+					<li>
+						<label for="marque_id">Marque: </label>
+						<select id="marque_id" class="form-control" name="marque_id">
+							<option value=""> - choise - </option>
+
+							{if isset($marques) && is_array($marques) && count($marques) > 0}
+								{foreach from=$marques item=marque}
+									<option value="{$marque.marque_id}" {if isset($filters.marque_id) && $filters.marque_id == $marque.marque_id}selected="selected"{/if} >{$marque.marque_name}</option>
+								{/foreach}
+							{/if}
+						</select>
+					</li>
+
+					<li>
+						<label for="modele_name">Modele: </label>
+						<input class="form-control" type="text" name="modele_name" id="modele_name" value="{if isset($filters.modele_name)}{$filters.modele_name|escape:'html'}{/if}" />
+					</li>
+
+					<li>
+						<label for="modele_slogan">Slogan: </label>
+						<input class="form-control" type="text" name="modele_slogan" id="modele_slogan" value="{if isset($filters.modele_slogan)}{$filters.modele_slogan|escape:'html'}{/if}" />
+					</li>
+
+					<li>
+						<label for="from_date">From date: </label>
+						<div class="form-group">
+							<div class='input-group date' id='datepicker-from'>
+								<input name="from_date" type='text' class="form-control" id="from_date" value="{if isset($filters.from_date)}{$filters.from_date}{/if}" />
+								<span class="input-group-addon">
+		                        	<span class="glyphicon glyphicon-calendar"></span>
+		                    	</span>
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<label for="to_date">То date: </label>
+						<div class="form-group">
+							<div class='input-group date' id='datepicker-to'>
+								<input type='text' name="to_date" class="form-control" id="to_date" value="{if isset($filters.to_date)}{$filters.to_date}{/if}"/>
+								<span class="input-group-addon">
+		                        	<span class="glyphicon glyphicon-calendar"></span>
+		                    	</span>
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<input class="btn" type="submit" value="Search">
+					</li>
+					<div class="clear"></div>
+				</ul>
+			</fieldset>
+
+		</form>
+	</div>
+
+
+
+	{if isset($rows) && !empty($rows) && is_array($rows) && count($rows) > 0 }
+	<table class="grid" style="width: 100%; margin: 40px 0px;" border=1>
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Marque</th>
+			<th>Modele</th>
+			<th>Slogan</th>
+			<th>Date created</th>
+			<th>Date modified</th>
+			<th></th>
+		</tr>
+		</thead>
+
+		<tbody>
+		{foreach from=$rows item=row}
+		<tr>
+			<td>{$row.modele_id}</td>
+			<td>{$row.marque_name}</td>
+			<td>{$row.modele_name}</td>
+			<td>{$row.modele_slogan}</td>
+			<td>{$row.modele_date_creation}</td>
+			<td>{$row.modele_date_modification|date_format:'%Y/%m'}</td>
+			<td style="text-align: center; color: red;">
+				<strong><a class="edit" href="{$smarty.const.WEB_PATH}manager/vehicule_modeles/update/{$row.modele_id}"></a></strong>
+			</td>
+		</tr>
+		{/foreach}
+		</tbody>
+	</table>
+	{else}
+		<div>Not finded results!</div>
+		<a href="{$smarty.const.WEB_PATH}manager/vehicule_modeles">View all results.</a>
+	{/if}
+
+
+</div>
+
+<script type="text/javascript" src="{$smarty.const.WEB_PATH}js/manager/bootstrap-datepicker.min.js"></script>
+<script >
+	$(function () {
+		$('#datepicker-from').datepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true,
+			todayHighlight: true,
+			showOtherMonths: true,
+			selectOtherMonths: true,
+			autoclose: true,
+			changeMonth: true,
+			changeYear: true,
+			orientation: "button"
+		});
+	});
+
+	$(function () {
+		$('#datepicker-to').datepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true,
+			todayHighlight: true,
+			showOtherMonths: true,
+			selectOtherMonths: true,
+			autoclose: true,
+			changeMonth: true,
+			changeYear: true,
+			orientation: "button"
+		});
+	});
+</script>

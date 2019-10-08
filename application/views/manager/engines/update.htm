@@ -1,0 +1,101 @@
+<div class="section">
+
+    <div class="create-btn">
+        <a href="{$smarty.const.WEB_PATH}manager/vehicule_engines" class="btn">View all engines</a>
+        <div class="clear"></div>
+    </div>
+
+    <div class="message" id="response"></div>
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>Update engine</legend>
+            <ul>
+                <li>
+                    <div class="d1"><label for="engine_name">Name: </label></div>
+                    <div class="d2"><input type="text" name="engine_name" id="engine_name" value="{if isset($post.engine_name)}{$post.engine_name|escape:'html'}{else}{if isset($data.engine_name)}{$data.engine_name|escape:'html'}{/if}{/if}" /></div>
+                </li>
+
+                <div id="update-engine" class="update-btn btn">Update</div>
+            </ul>
+        </fieldset>
+    </form>
+
+
+
+</div>
+
+<script>
+
+    $(document).ready(function(){
+
+
+        $("#update-engine").on('click',function(){
+
+
+            var response    = $("#response");
+
+            response.html('izprashtane na zaqvka...').removeClass("error").removeClass("success");
+
+            var button      = $(this);
+
+
+            //   1
+            var engine_name     = $("#engine_name").val();
+            var data1 = {
+                engine_name     : engine_name
+            }
+            console.log('-----------------------');
+            console.log(data1);
+            //    2
+            //var holder          = button.parents('ul');
+            var holder          = button.parents('fieldset');
+            var engine_name     = holder.find("input[name=engine_name]").val();
+
+            var data2 = {
+                engine_name     : engine_name
+            }
+            console.log('-----------------------');
+            console.log(data2);
+
+            //    3
+            var form          = button.parents('form');
+
+            var data3          = form.serialize();
+
+            console.log('-----------------------');
+            console.log(data3);
+
+
+            $.ajax({
+                url			: 'http://mobile.localhost/manager/vehicule_engines/ajax/{$data.engine_id}',
+                type		: "POST",
+                dataType	: "json",
+                data		: data3,
+                success		: function( json ) {
+
+
+                    if ( json.status ) {
+                        // true
+                        response.addClass("success");
+                    } else{
+                        // false
+                        response.addClass("error");
+                    }
+
+                    response.html( json.message );
+
+                    console.log(json);
+
+
+                },
+                error		: function(error) {
+                    console.log(error);
+                    console.log(error.responseText);
+                }
+            });
+        });
+
+    });
+
+</script>
